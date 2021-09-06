@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+	<model name="campinho_rend">
+	<static>true</static>
+	<link name="campinho_link">
+		<collision name="campinho colision">
+		 <geometry>
+			<mesh filename="package://espeleo_gazebo/models/campinho/campinho_rend.stl"/>
+		 </geometry>
+		</collision>
+
+		<visual name="campinho_mesh">
+		 <cast_shadows>true</cast_shadows>
+		 <geometry>
+			<mesh filename="package://espeleo_gazebo/models/campinho/campinho_rend.stl"/>
+		 </geometry>
+		</visual>
+	</link>
+	</model>
+</sdf>

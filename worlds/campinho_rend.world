@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+	<world name="W_campinho_rend">
+	  <include>
+		<uri>model://sun</uri>
+	  </include>
+
+	  <include>
+		<uri>model://campinho_rend</uri>
+		  <name>campinho_rend</name>
+		  <pose>0 0 0 0 0 0 </pose>
+	  
+	  </include>
+	</world>
+</sdf>
