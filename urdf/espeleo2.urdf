@@ -58,9 +58,10 @@
     </visual>
 
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0.15"/>
-      <mass value="0.5"/>
-      <inertia ixx="0.01215" ixy="0" ixz="0" iyy="0.0030375" iyz="0" izz="0.0151875"/>
+      <origin rpy="0 0 0" xyz="0 0 -.05"/>
+      <mass value="15.0"/>
+      <inertia ixx=".040005110" ixy=".02001773" ixz="-0.00034131" iyy=".17086763" iyz="0.00466448" izz=".16009832"/>
+      <!--<inertia ixx="4." ixy="0" ixz="0" iyy="4." iyz="0" izz="4.0151875"/>-->
     </inertial>
   </link>
 
@@ -84,27 +85,27 @@
 
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <mass value="0.2"/>
-      <inertia ixx="0.00101081666667" ixy="0" ixz="0" iyy="0.00101081666667" iyz="0" izz="0.00196"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
     </inertial>
   </link>
   
-  <joint name="left_front_wheel_joint" type="revolute">
+  <joint name="left_front_wheel_joint" type="continuous"> <!--type="revolute">-->
     <parent link="chassis"/>
     <child link="left_front_wheel"/>
     <origin rpy="0 0 0" xyz="0.215 0.175 -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/>   
+    <!--<limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/>-->
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
 
   <transmission name="left_front_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_front_wheel_joint">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
     </joint>
     <actuator name="left_frontMotor">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
       <mechanicalReduction>10</mechanicalReduction>
     </actuator>
   </transmission>
@@ -176,27 +177,27 @@
 
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <mass value="0.2"/>
-      <inertia ixx="0.00101081666667" ixy="0" ixz="0" iyy="0.00101081666667" iyz="0" izz="0.00196"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
     </inertial>
   </link>
   
-  <joint name="left_back_wheel_joint" type="revolute">
+  <joint name="left_back_wheel_joint" type="continuous"> <!--type="revolute">-->
     <parent link="chassis"/>
     <child link="left_back_wheel"/>
     <origin rpy="0 0 0" xyz="-0.212 0.175 -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> 
+    <!--<limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/>-->
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
 
   <transmission name="left_back_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_back_wheel_joint">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
     </joint>
     <actuator name="left_backMotor">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
       <mechanicalReduction>10</mechanicalReduction>
     </actuator>
   </transmission>
@@ -212,7 +213,7 @@
     </collision>
 
     <visual>
-      <origin rpy="3.1415 0 3.14159265359" xyz="0 0 0"/>
+      <origin rpy="0 0 3.14159265359" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://espeleo_description/urdf/stl/roda_esquerda.stl"/>
       </geometry>
@@ -221,27 +222,27 @@
 
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <mass value="0.2"/>
-      <inertia ixx="0.00101081666667" ixy="0" ixz="0" iyy="0.00101081666667" iyz="0" izz="0.00196"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
     </inertial>
   </link>
   
-  <joint name="right_front_wheel_joint" type="revolute">
+  <joint name="right_front_wheel_joint" type="continuous"> <!--type="revolute">-->
     <parent link="chassis"/>
     <child link="right_front_wheel"/>
-    <origin rpy="3.1415 0 0" xyz="0.215 -0.175 -0.01"/>
+    <origin rpy="0 0 0" xyz="0.215 -0.175 -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> 
+    <!--<limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/>-->
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
 
   <transmission name="right_front_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_front_wheel_joint">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
     </joint>
     <actuator name="right_frontMotor">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
       <mechanicalReduction>10</mechanicalReduction>
     </actuator>
   </transmission>
@@ -302,7 +303,7 @@
     </collision>
 
     <visual>
-      <origin rpy="3.1415 0 3.14159265359" xyz="0 0 0"/>
+      <origin rpy="0 0 3.14159265359" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://espeleo_description/urdf/stl/roda_esquerda.stl"/>
       </geometry>
@@ -311,27 +312,27 @@
 
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <mass value="0.2"/>
-      <inertia ixx="0.00101081666667" ixy="0" ixz="0" iyy="0.00101081666667" iyz="0" izz="0.00196"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
     </inertial>
   </link>
   
-  <joint name="right_back_wheel_joint" type="revolute">
+  <joint name="right_back_wheel_joint" type="continuous"> <!--type="revolute">-->
     <parent link="chassis"/>
     <child link="right_back_wheel"/>
-    <origin rpy="3.1415 0 0" xyz="-0.212 -0.175 -0.01"/>
+    <origin rpy="0 0 0" xyz="-0.212 -0.175 -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> 
+    <!--<limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> -->
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
 
   <transmission name="right_back_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_back_wheel_joint">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
     </joint>
     <actuator name="right_backMotor">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
+      <EffortJointInterface>EffortJointInterface</EffortJointInterface>
       <mechanicalReduction>10</mechanicalReduction>
     </actuator>
   </transmission>
@@ -379,7 +380,7 @@
   <link name="imu_link">
   <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.01"/>
+      <mass value="0.05"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
     </inertial>
   </link>
@@ -414,7 +415,7 @@
 
     <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.01"/>
+        <mass value="0.5"/>
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
       </inertial>
     </link>
@@ -454,23 +455,60 @@
     <material>Gazebo/White</material>
   </gazebo>
   
+  <!--<gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <alwaysOn>false</alwaysOn>
+      <legacyMode>false</legacyMode>
+      <updateRate>20</updateRate>
+      <leftJoint>left_front_wheel_joint</leftJoint>
+      <rightJoint>right_front_wheel_joint</rightJoint>
+      <wheelSeparation>0.3</wheelSeparation>
+      <wheelDiameter>0.28</wheelDiameter>
+      <torque>20</torque>
+      <commandTopic>/cmd_vel</commandTopic>
+      <odometryTopic>/espeleo/odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>-->
   <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>50.0</updateRate>
+    <robotNamespace>espeleo</robotNamespace>
+    <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
+    <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
+    <leftRearJoint>left_back_wheel_joint</leftRearJoint>
+    <rightRearJoint>right_back_wheel_joint</rightRearJoint>
+    <wheelSeparation>0.35</wheelSeparation>
+    <wheelDiameter>0.28</wheelDiameter>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>,
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>1000</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo>
+ 
+
+  <!--<gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>espeleo</robotNamespace>
-      <!--<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-      <legacyModeNS>true</legacyModeNS>-->
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
-
-  <gazebo>
+-->
+  <!--<gazebo>
     <plugin filename="libdiffdrive_plugin_multi_wheel.so" name="diffdrive_plugin_multiwheel">
       <alwaysOn>true</alwaysOn>
       <updateRate>100.0</updateRate>
       <leftJoints>left_front_wheel_joint left_back_wheel_joint</leftJoints>
-      <rightJoints>right_front_wheel_joint right_back_wheel_joint</rightJoints>
+      <rightJoints>right_front_wheel_joint right_back_wheel_joint</rightJoints>-->
       <!-- <wheelSeparation>${chassisWidth+wheelWidth}</wheelSeparation> THis is the right one, but the robot takes too much time to turn -->
-      <wheelSeparation>1</wheelSeparation>
-      <wheelDiameter>0.28</wheelDiameter>
+      <!--<wheelSeparation>1</wheelSeparation>-->
+     <!-- <wheelDiameter>0.28</wheelDiameter>
       <torque>1000000</torque>
       <position name="position_iface_2"/>
       <robotBaseFrame>base_link</robotBaseFrame>
@@ -478,7 +516,7 @@
       <publishOdometryTf>1</publishOdometryTf>
       <publishOdometryMsg>1</publishOdometryMsg>
     </plugin>
-  </gazebo>
+  </gazebo>-->
 
   <!--
   <gazebo reference="camera">
