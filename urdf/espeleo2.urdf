@@ -58,9 +58,10 @@
     </visual>
 
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 -.05"/>
-      <mass value="15.0"/>
-      <inertia ixx=".040005110" ixy=".02001773" ixz="-0.00034131" iyy=".17086763" iyz="0.00466448" izz=".16009832"/>
+      <origin rpy="0 0 0" xyz="-0.13 -0.01 .08"/>
+      <mass value="20.0"/>
+      <inertia ixx=".14" ixy="0.003" ixz="-0.063" iyy=".219" iyz="-.06" izz="0.89"/>
+      <!--<inertia ixx=".040005110" ixy=".02001773" ixz="-0.00034131" iyy=".17086763" iyz="0.00466448" izz=".16009832"/>-->
       <!--<inertia ixx="4." ixy="0" ixz="0" iyy="4." iyz="0" izz="4.0151875"/>-->
     </inertial>
   </link>
@@ -86,7 +87,8 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <!--<inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>-->
     </inertial>
   </link>
   
@@ -178,7 +180,7 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
   </link>
   
@@ -223,7 +225,7 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
   </link>
   
@@ -313,7 +315,7 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
     </inertial>
   </link>
   
@@ -322,7 +324,7 @@
     <child link="right_back_wheel"/>
     <origin rpy="0 0 0" xyz="-0.212 -0.175 -0.01"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
-    <!--<limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> -->
+    <!--<limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/>-->
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
 
@@ -378,12 +380,12 @@
   <!-- Imu --> 
 
   <link name="imu_link">
-  <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.05"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
-    </inertial>
-  </link>
+    <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+      </inertial>
+    </link>
 
   <joint name="imu_joint" type="fixed">
     <axis xyz="0 1 0"/>
@@ -455,68 +457,28 @@
     <material>Gazebo/White</material>
   </gazebo>
   
-  <!--<gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <alwaysOn>false</alwaysOn>
-      <legacyMode>false</legacyMode>
-      <updateRate>20</updateRate>
-      <leftJoint>left_front_wheel_joint</leftJoint>
-      <rightJoint>right_front_wheel_joint</rightJoint>
-      <wheelSeparation>0.3</wheelSeparation>
+
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
+      <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
+      <leftRearJoint>left_back_wheel_joint</leftRearJoint>
+      <rightRearJoint>right_back_wheel_joint</rightRearJoint>
+      <wheelSeparation>0.35</wheelSeparation>
       <wheelDiameter>0.28</wheelDiameter>
-      <torque>20</torque>
-      <commandTopic>/cmd_vel</commandTopic>
-      <odometryTopic>/espeleo/odom</odometryTopic>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>,
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_link</robotBaseFrame>
-    </plugin>
-  </gazebo>-->
-  <gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>50.0</updateRate>
-    <robotNamespace>espeleo</robotNamespace>
-    <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
-    <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
-    <leftRearJoint>left_back_wheel_joint</leftRearJoint>
-    <rightRearJoint>right_back_wheel_joint</rightRearJoint>
-    <wheelSeparation>0.35</wheelSeparation>
-    <wheelDiameter>0.28</wheelDiameter>
-    <commandTopic>cmd_vel</commandTopic>
-    <odometryTopic>odom</odometryTopic>,
-    <odometryFrame>odom</odometryFrame>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <torque>1000</torque>
-    <topicName>cmd_vel</topicName>
-    <broadcastTF>false</broadcastTF>
-  </plugin>
-</gazebo>
- 
-
-  <!--<gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>espeleo</robotNamespace>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-      <legacyModeNS>true</legacyModeNS>
+      <torque>100</torque>
+      <topicName>cmd_vel</topicName>
+      <broadcastTF>false</broadcastTF>
     </plugin>
   </gazebo>
--->
-  <!--<gazebo>
-    <plugin filename="libdiffdrive_plugin_multi_wheel.so" name="diffdrive_plugin_multiwheel">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>100.0</updateRate>
-      <leftJoints>left_front_wheel_joint left_back_wheel_joint</leftJoints>
-      <rightJoints>right_front_wheel_joint right_back_wheel_joint</rightJoints>-->
-      <!-- <wheelSeparation>${chassisWidth+wheelWidth}</wheelSeparation> THis is the right one, but the robot takes too much time to turn -->
-      <!--<wheelSeparation>1</wheelSeparation>-->
-     <!-- <wheelDiameter>0.28</wheelDiameter>
-      <torque>1000000</torque>
-      <position name="position_iface_2"/>
-      <robotBaseFrame>base_link</robotBaseFrame>
-      <commandTopic>/cmd_vel</commandTopic>
-      <publishOdometryTf>1</publishOdometryTf>
-      <publishOdometryMsg>1</publishOdometryMsg>
-    </plugin>
-  </gazebo>-->
+
+ 
 
   <!--
   <gazebo reference="camera">
@@ -593,14 +555,14 @@
   </gazebo>
 
 <gazebo reference="left_front_wheel">
-    <mu1 value="1"/>
+    <mu1 value="10"/>
     <mu2 value="1"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
     <maxContacts>1</maxContacts>
-    <!--maxVel>1.0</maxVel-->
+    <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
@@ -617,27 +579,27 @@
 </gazebo>-->
 
 <gazebo reference="left_back_wheel">
-    <mu1 value="1"/>
+    <mu1 value="10"/>
     <mu2 value="1"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
     <maxContacts>1</maxContacts>
-    <!--maxVel>1.0</maxVel-->
+    <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
 
 <gazebo reference="right_front_wheel">
-    <mu1 value="1"/>
+    <mu1 value="10"/>
     <mu2 value="1"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
     <maxContacts>1</maxContacts>
-    <!--maxVel>1.0</maxVel-->
+    <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
 </gazebo>
 <!--
@@ -653,14 +615,14 @@
   </gazebo>-->
 
 <gazebo reference="right_back_wheel">
-    <mu1 value="1"/>
+    <mu1 value="10"/>
     <mu2 value="1"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
     <maxContacts>1</maxContacts>
-    <!--maxVel>1.0</maxVel-->
+    <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
