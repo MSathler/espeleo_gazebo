@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-    <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
-    <!--<arg name="physics" value="bullet" /> 
-    </include>-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!--arg name="physics" value="bullet"/--> 
+    </include>
     <param name="robot_description" command="cat '$(find espeleo_gazebo)/urdf/espeleo2.urdf'"/>
 
     <arg name="x" default="0"/>

@@ -58,11 +58,11 @@
     </visual>
 
     <inertial>
-      <origin rpy="0 0 0" xyz="-0.13 -0.01 .08"/>
+      <origin rpy="1.57 0 0" xyz="-0. 0. 0."/>
       <mass value="20.0"/>
-      <inertia ixx=".14" ixy="0.003" ixz="-0.063" iyy=".219" iyz="-.06" izz="0.89"/>
+      <inertia ixx=".14" ixy="0.003" ixz="-0.063" iyy=".219" iyz="-.06" izz="0.089"/>
       <!--<inertia ixx=".040005110" ixy=".02001773" ixz="-0.00034131" iyy=".17086763" iyz="0.00466448" izz=".16009832"/>-->
-      <!--<inertia ixx="4." ixy="0" ixz="0" iyy="4." iyz="0" izz="4.0151875"/>-->
+      <!--inertia ixx=".5" ixy="0" ixz="0" iyy=".5" iyz="0" izz=".1"/-->
     </inertial>
   </link>
 
@@ -87,8 +87,8 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
-      <!--<inertia ixx="0.000895020" ixy="-0.000001" ixz="-0.000000" iyy="0.000895023" iyz="-0.000000" izz=".001758982"/>-->
+      <!--inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/-->
+      <inertia ixx="0.00895020" ixy="-0.00001" ixz="-0.000000" iyy="0.00895023" iyz="-0.000000" izz=".01758982"/>
     </inertial>
   </link>
   
@@ -114,52 +114,6 @@
 
 
 
-  <!--<link name="left_middle_wheel">
-
-    <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.043" radius="0.14"/>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://espeleo_description/urdf/stl/roda_esquerda.stl"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-
-    <inertial>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <mass value="0.2"/>
-      <inertia ixx="0.00101081666667" ixy="0" ixz="0" iyy="0.00101081666667" iyz="0" izz="0.00196"/>
-    </inertial>
-  </link>
-
-  <joint name="left_middle_wheel_joint" type="revolute">
-    <parent link="chassis"/>
-    <child link="left_middle_wheel"/>
-    <origin rpy="0 0 0" xyz="0.0 0.225 -0.01"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> 
-    <joint_properties damping="0.0" friction="0.0"/>
-  </joint>
-
-  <transmission name="left_middle_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_middle_wheel_joint">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
-    </joint>
-    <actuator name="left_middleMotor">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
-      <mechanicalReduction>10</mechanicalReduction>
-    </actuator>
-  </transmission>-->
-
-
-
   <link name="left_back_wheel">
 
     <collision>
@@ -180,7 +134,8 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <!--inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/-->
+      <inertia ixx="0.00895020" ixy="-0.00001" ixz="-0.000000" iyy="0.00895023" iyz="-0.000000" izz=".01758982"/>
     </inertial>
   </link>
   
@@ -225,7 +180,8 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <!--inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/-->
+      <inertia ixx="0.00895020" ixy="-0.00001" ixz="-0.00000" iyy="0.00895023" iyz="-0.000000" izz=".01758982"/>
     </inertial>
   </link>
   
@@ -250,51 +206,6 @@
   </transmission>
 
 
- <!-- <link name="right_middle_wheel">
-
-    <collision>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="0.043" radius="0.14"/>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin rpy="3.1415 0 3.14159265359" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://espeleo_description/urdf/stl/roda_esquerda.stl"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-
-    <inertial>
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
-      <mass value="0.2"/>
-      <inertia ixx="0.00101081666667" ixy="0" ixz="0" iyy="0.00101081666667" iyz="0" izz="0.00196"/>
-    </inertial>
-  </link>
-  
-  <joint name="right_middle_wheel_joint" type="revolute">
-    <parent link="chassis"/>
-    <child link="right_middle_wheel"/>
-    <origin rpy="3.1415 0 0" xyz="0 -0.225 -0.01"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit command_effort="100" current="10" effort="80" gear_velocity="10" lower="-9.42" upper="9.42" velocity="15"/> 
-    <joint_properties damping="0.0" friction="0.0"/>
-  </joint>
-
-  <transmission name="right_middle_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_middle_wheel_joint">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
-    </joint>
-    <actuator name="right_middleMotor">
-      <EffortJointInterface>hardware_interface/EffortJointInterface</EffortJointInterface>
-      <mechanicalReduction>10</mechanicalReduction>
-    </actuator>
-  </transmission>-->
-
-
   <link name="right_back_wheel">
 
     <collision>
@@ -315,7 +226,8 @@
     <inertial>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <mass value="0.8"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <!--inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/-->
+      <inertia ixx="0.00895020" ixy="-0.00001" ixz="-0.00000" iyy="0.00895023" iyz="-0.00000" izz=".01758982"/>
     </inertial>
   </link>
   
@@ -556,12 +468,12 @@
 
 <gazebo reference="left_front_wheel">
     <mu1 value="10"/>
-    <mu2 value="1"/>
+    <mu2 value="10"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
-    <maxContacts>1</maxContacts>
+    <maxContacts>10</maxContacts>
     <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
@@ -579,13 +491,13 @@
 </gazebo>-->
 
 <gazebo reference="left_back_wheel">
-    <mu1 value="10"/>
-    <mu2 value="1"/>
+    <mu1 value="100"/>
+    <mu2 value="10"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
-    <maxContacts>1</maxContacts>
+    <maxContacts>10</maxContacts>
     <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
@@ -593,12 +505,12 @@
 
 <gazebo reference="right_front_wheel">
     <mu1 value="10"/>
-    <mu2 value="1"/>
+    <mu2 value="10"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
-    <maxContacts>1</maxContacts>
+    <maxContacts>10</maxContacts>
     <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
 </gazebo>
@@ -616,12 +528,12 @@
 
 <gazebo reference="right_back_wheel">
     <mu1 value="10"/>
-    <mu2 value="1"/>
+    <mu2 value="10"/>
     <kp value="1000000.0"/>
     <kd value="10.0"/>
     <fdir1 value="0 0 1"/>
     <minDepth>0.001</minDepth>
-    <maxContacts>1</maxContacts>
+    <maxContacts>10</maxContacts>
     <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
