@@ -341,6 +341,73 @@
     <child link="os1_sensor"/>
   </joint>
 
+  <!-- hokuyo -->
+  
+
+  <link name="hokuyo">
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.045"/>
+      <geometry>
+        <box size="0.13 0.13 0.095"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin rpy="0 0 0" xyz="0. 0. 0."/>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.5"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+      </inertial>
+    </link>
+
+  <joint name="laser2_joint" type="fixed">
+    <axis xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 .305"/>
+    <parent link="sensor_tower"/>
+    <child link="hokuyo"/>
+  </joint>
+
+
+  <!-- Cameras --> 
+
+  <link name="front_camera">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+      </inertial>
+    </link>
+
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.265 0 0.03"/> 
+    <parent link="chassis"/>
+    <child link="front_camera"/>
+  </joint>
+
+  <link name="back_camera">
+    <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+      </inertial>
+    </link>
+
+  <joint name="camera2_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 3.14" xyz="-0.265 0 0.03"/> 
+    <parent link="chassis"/>
+    <child link="back_camera"/>
+  </joint>
+
 
 
 
@@ -384,18 +451,16 @@
       <odometryTopic>odom</odometryTopic>,
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_link</robotBaseFrame>
-      <torque>100</torque>
+      <torque>500</torque>
       <topicName>cmd_vel</topicName>
-      <broadcastTF>false</broadcastTF>
+      <broadcastTF>true</broadcastTF>
     </plugin>
   </gazebo>
 
  
 
-  <!--
-  <gazebo reference="camera">
-    <material>Gazebo/Green</material>
-    <sensor name="camera1" type="camera">
+  <gazebo reference="back_camera">
+    <sensor type="camera" name="camera2">
       <update_rate>30.0</update_rate>
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
@@ -408,14 +473,22 @@
           <near>0.02</near>
           <far>300</far>
         </clip>
+        <noise>
+          <type>gaussian</type>
+           <!--Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
       </camera>
-      <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>espeleo/camera1</cameraName>
+        <cameraName>espeleo/camera2</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>camera</frameName>
+        <frameName>back_camera</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -424,7 +497,48 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo>-->
+  </gazebo>
+
+  <gazebo reference="front_camera">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+           <!--Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>espeleo/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>front_camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 
   <!-- hokuyo -->
   <gazebo reference="hokuyo">
@@ -466,6 +580,20 @@
     </sensor>
   </gazebo>
 
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>base_link</bodyName>
+      <topicName>imu_link</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+    </plugin>
+  </gazebo>
+
+
+<!--http://gazebosim.org/tutorials/?tut=ros_urdf-->
+
 <gazebo reference="left_front_wheel">
     <mu1 value="10"/>
     <mu2 value="10"/>
@@ -478,17 +606,6 @@
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
-<!--<gazebo reference="left_middle_wheel">
-    <mu1 value="1"/>
-    <mu2 value="1"/>
-    <kp value="1000000.0"/>
-    <kd value="10.0"/>
-    <fdir1 value="0 0 1"/>
-    <minDepth>0.001</minDepth>
-    <maxContacts>1</maxContacts>
-    maxVel>1.0</maxVel
-    <material>Gazebo/DarkGrey</material>
-</gazebo>-->
 
 <gazebo reference="left_back_wheel">
     <mu1 value="100"/>
@@ -514,17 +631,6 @@
     <maxVel>1.0</maxVel>
     <material>Gazebo/DarkGrey</material>
 </gazebo>
-<!--
-<gazebo reference="right_middle_wheel">
-    <mu1 value="1"/>
-    <mu2 value="1"/>
-    <kp value="1000000.0"/>
-    <kd value="10.0"/>
-    <fdir1 value="0 0 1"/>
-    <minDepth>0.001</minDepth>
-    <maxContacts>1</maxContacts>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>-->
 
 <gazebo reference="right_back_wheel">
     <mu1 value="10"/>
