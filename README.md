@@ -1,4 +1,5 @@
 # espeleo_gazebo
+**Tested in Ubuntu 16.04 and Gazebo7.0**
 ### *In Development*
 Implemented:
 
